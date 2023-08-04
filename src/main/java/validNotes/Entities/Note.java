@@ -1,7 +1,6 @@
 package validNotes.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,16 +14,21 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "notes")
 public class Note {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int noteId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Positive(message = "Team ID must be a positive integer.")
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 
     @Positive(message = "Team ID must be a positive integer.")
-    private int teamId;
-    @Positive(message = "Team ID must be a positive integer.")
-    private int memberId;
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private User user;
 
     @NotBlank(message = "Notes field must not be blank.")
     private String note;
@@ -33,4 +37,7 @@ public class Note {
 
     private LocalDate createdAt;
     private LocalDate updatedAt;
+    private LocalDate deletedAt;
+
+
 }

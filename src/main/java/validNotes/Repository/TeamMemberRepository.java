@@ -1,4 +1,9 @@
 package validNotes.Repository;
 
-public interface TeamMemberRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import validNotes.Entities.TeamMember;
+
+public interface TeamMemberRepository extends JpaRepository<TeamMember,Integer> {
+
+
 }

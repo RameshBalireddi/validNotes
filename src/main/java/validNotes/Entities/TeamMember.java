@@ -16,6 +16,7 @@ public class TeamMember {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
@@ -24,5 +25,27 @@ public class TeamMember {
     @JoinColumn(name = "member_id")
     private User user;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -1,13 +1,11 @@
 package validNotes.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
 @Entity
@@ -20,19 +18,20 @@ public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Positive(message = "Team ID must be a positive integer.")
+
     @ManyToOne
     @JoinColumn(name = "team_id")
+//    @JsonIgnore
     private Team team;
 
-    @Positive(message = "Team ID must be a positive integer.")
     @ManyToOne
+//    @JsonIgnore
     @JoinColumn(name = "member_id")
     private User user;
 
-    @NotBlank(message = "Notes field must not be blank.")
+
     private String note;
-    @Pattern(regexp = "^(Active|Inactive)$", message = "Note status must be 'Active' or 'Inactive'")
+
     private String status;
 
     private LocalDate createdAt;
@@ -40,4 +39,67 @@ public class Note {
     private LocalDate deletedAt;
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public LocalDate getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDate deletedAt) {
+        this.deletedAt = deletedAt;
+    }
 }

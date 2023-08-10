@@ -19,6 +19,4 @@ public interface NoteRepository extends JpaRepository <Note,Integer>{
     List<Note> findByStatusAndTeamIdAndUserId(@Param("status") String status, @Param("teamId") int teamId,@Param("memberId") int memberId);
 
 
-
-    List<Note> findByTeamId(int id);
 }

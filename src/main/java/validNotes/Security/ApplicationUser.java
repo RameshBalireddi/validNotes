@@ -9,20 +9,23 @@ import validNotes.Entities.User;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public  class ApplicationUser implements UserDetails {
-
+private int userId;
     private String email;
     private String password;
     private List<GrantedAuthority> authorities;
     public ApplicationUser(User user) {
+        this.userId=user.getId();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.authorities = Arrays.stream(user.getRole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
@@ -59,5 +62,13 @@ public  class ApplicationUser implements UserDetails {
         return true;
     }
 
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }
 

@@ -5,10 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "team_members")
 public class TeamMember {
 
@@ -19,10 +18,12 @@ public class TeamMember {
 
     @ManyToOne
     @JoinColumn(name = "team_id")
+    @NotNull
     private Team team;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
+    @NotNull
     private User user;
 
     public int getId() {

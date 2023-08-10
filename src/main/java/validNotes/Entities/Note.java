@@ -6,38 +6,36 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "notes")
 public class Note {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
-//    @JsonIgnore
+    @NotNull
     private Team team;
 
     @ManyToOne
-//    @JsonIgnore
     @JoinColumn(name = "member_id")
+    @NotNull
     private User user;
 
-
+    @Size(min = 1, max = 255)
     private String note;
 
+    @Pattern(regexp = "^(active|inactive)$", message = "Status must be 'active' or 'inactive'")
     private String status;
-
     private LocalDate createdAt;
     private LocalDate updatedAt;
     private LocalDate deletedAt;
-
 
     public int getId() {
         return id;
@@ -80,7 +78,7 @@ public class Note {
     }
 
     public LocalDate getCreatedAt() {
-        return createdAt;
+                return createdAt;
     }
 
     public void setCreatedAt(LocalDate createdAt) {
@@ -102,4 +100,6 @@ public class Note {
     public void setDeletedAt(LocalDate deletedAt) {
         this.deletedAt = deletedAt;
     }
+
+
 }

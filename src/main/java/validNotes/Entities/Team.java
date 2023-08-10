@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -20,7 +20,9 @@ public class Team {
     private int id;
     @ManyToOne
     @JoinColumn(name = "created_user")
+    @NotNull
     private User user;
+    @NotNull
    private String name;
    private LocalDate createdAt;
    private LocalDate updatedAt;

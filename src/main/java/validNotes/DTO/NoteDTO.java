@@ -11,11 +11,6 @@ public class NoteDTO {
     private String note;
 
     private LocalDate createdAt;
-
-//    private LocalDate updatedAt;
-//
-//    private LocalDate deletedAt;
-
     public int getNoteId() {
         return noteId;
     }

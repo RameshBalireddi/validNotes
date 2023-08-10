@@ -21,10 +21,6 @@ public class TeamMemberController {
     public String addTeamMember(@RequestBody TeamMember teamMember) {
         try {
             teamMember.getTeam().getId();
-
-            if(teamMember!=null){
-
-            }
             teamMemberRepository.save(teamMember);
         } catch (Exception e) {
             return "Error: " + e.getMessage(); // Return the error message
@@ -32,15 +28,6 @@ public class TeamMemberController {
         return "Member added to the team successfully";
     }
 
-//    @Autowired
-//    private EntityManager entityManager;
-//
-//    public void testInsert() {
-//        entityManager.createNativeQuery("INSERT INTO team_members (team_id, member_id) VALUES (?, ?)")
-//                .setParameter(1, 1)
-//                .setParameter(2, 3)
-//                .executeUpdate();
-//    }
 
 
 
